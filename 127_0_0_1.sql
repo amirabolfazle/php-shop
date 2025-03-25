@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2024 at 04:25 PM
+-- Generation Time: Jul 03, 2024 at 04:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,7 +62,9 @@ CREATE TABLE `category_products` (
 INSERT INTO `category_products` (`id`, `category_id`, `product_id`) VALUES
 (1, 1, 1),
 (3, 2, 1),
-(5, 2, 8);
+(5, 2, 8),
+(6, 1, 10),
+(7, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,32 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `about`, `price`, `off`, `img`) VALUES
 (1, 'اکانت وریفای شده', 'دارای پرفیت و کوین بالا', 2000000, 2, 'http://localhost/hamster/admin/cdn/categories/1'),
 (7, '2', '2', 2, 0, 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg'),
-(8, '2', '2', 2, 0, 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg');
+(8, '2', '2', 2, 0, 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg'),
+(10, 'سلام', '1', 1, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `name`, `password`) VALUES
+(1, '1', 'حشمت', '1'),
+(2, '1', '1', '2'),
+(3, '2', 'سلام', '1234'),
+(4, '12', 'امین', ''),
+(5, '122', 'امین', '3333');
 
 --
 -- Indexes for dumped tables
@@ -111,6 +138,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -124,13 +157,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `category_products`
 --
 ALTER TABLE `category_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

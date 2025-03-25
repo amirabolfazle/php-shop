@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['id'])){}
+else{
+    header('Location: /hamster/signin');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +19,6 @@
   <link rel="preconnect" href="//fdn.fontcdn.ir">
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
-<?php
-    session_start();
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    if (isset($_SESSION['id'])){
-        $er=0;
-        $sql6='select * from users where id='.$_SESSION['id'];
-        $res6=mysqli_query($connect,$sql6);
-        while($row6=mysqli_fetch_assoc($res6)){
-            $name=$row6['name'];
-        }
-    }else{
-        $er=1;
-    }
-?>
 <style>
     *{
         font-family: Estedad, sans-serif;
@@ -50,39 +43,27 @@
                     </li>
                 </ul>
             </div>
-            <?php
-                if (isset($_SESSION['id'])){
-                    echo "<div class='p-3 navbar-brand text-warning'>خوش آمدید <span class='text-light'>$name</span></div><div class='p-3'><a href='logout' class='btn btn-lg btn-danger'>خروج</a></div>";
-                }else{
-                    echo "<div class='p-3 navbar-brand text-warning'><a href='signin' class='btn btn-lg btn-warning'>وارد شوید</a></div>";
-                }
-            ?>
         </nav>
         <div id="mini-body" style="background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;">
             <div style="min-height: 15vh;"></div>
             <div class="container">
-                <div class="row">
-                    <?php
-                    $sql='select * from categories';
-                    $resault=mysqli_query($connect,$sql);
-                    if (mysqli_num_rows($resault) > 0){
-                        while($row=mysqli_fetch_assoc($resault)){
-                            echo '
-                            <div class="card col-3">
-                                <br>
-                                <img class="card-img-top" src="'.$row['img'].'" alt="Product" style="max-height: 350px;min-height:350px">
-                                <div class="card-body">
-                                <h1 class="card-title">'.$row['name'].'</h1>
-                                    <p class="card-text"></p>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">پنل مدیریت</h2>
+                            <p class="card-text">
+                                <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="product" class="btn btn-lg btn-warning">مدیریت محصولات</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="category" class="btn btn-lg btn-warning">مدیریت دسته بندی</a>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <a class="btn btn-warning" href="products.php?id='.$row['id'].'"><h5>مشاهده</h5></a>
-                                </div>
-                            </div>
-                            ';
-                        }
-                    }
-                    ?>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="min-height: 250vh;"></div>

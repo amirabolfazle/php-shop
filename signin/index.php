@@ -54,36 +54,29 @@
                 if (isset($_SESSION['id'])){
                     echo "<div class='p-3 navbar-brand text-warning'>خوش آمدید <span class='text-light'>$name</span></div><div class='p-3'><a href='logout' class='btn btn-lg btn-danger'>خروج</a></div>";
                 }else{
-                    echo "<div class='p-3 navbar-brand text-warning'><a href='signin' class='btn btn-lg btn-warning'>وارد شوید</a></div>";
+                    echo "<div class='p-3 navbar-brand text-warning'><a href='/hamster/signin' class='btn btn-lg btn-warning'>وارد شوید</a></div>";
                 }
             ?>
         </nav>
         <div id="mini-body" style="background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;">
             <div style="min-height: 15vh;"></div>
             <div class="container">
-                <div class="row">
-                    <?php
-                    $sql='select * from categories';
-                    $resault=mysqli_query($connect,$sql);
-                    if (mysqli_num_rows($resault) > 0){
-                        while($row=mysqli_fetch_assoc($resault)){
-                            echo '
-                            <div class="card col-3">
-                                <br>
-                                <img class="card-img-top" src="'.$row['img'].'" alt="Product" style="max-height: 350px;min-height:350px">
-                                <div class="card-body">
-                                <h1 class="card-title">'.$row['name'].'</h1>
-                                    <p class="card-text"></p>
-                                </div>
-                                <div class="card-footer">
-                                    <a class="btn btn-warning" href="products.php?id='.$row['id'].'"><h5>مشاهده</h5></a>
-                                </div>
+                    <div class="col-6">
+                        <form action="action.php" method="post">
+                            <input type="text" name="uname" class="form-control" placeholder="نام کاربری خود را وارد کنید">
+                            <br>
+                            <input type="password" name="password" class="form-control" placeholder="رمز عبور خود را وارد کنید">
+                            <br>
+                            <input type="submit" class="btn btn-lg btn-warning" value="ورود">
+                            <br>
+                            <br>
+                            <div class="p-3">
+                                <h6>
+                                    <a href="/hamster/signup" class='text-warning link-underline-dark'>حساب کاربری ندارید؟ ثبت نام کنید</a>
+                                </h6>
                             </div>
-                            ';
-                        }
-                    }
-                    ?>
-                </div>
+                        </form>
+                    </div>
             </div>
             <div style="min-height: 250vh;"></div>
         </div>
