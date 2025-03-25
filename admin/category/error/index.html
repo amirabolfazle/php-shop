@@ -12,9 +12,6 @@
   <link rel="preconnect" href="//fdn.fontcdn.ir">
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
-<?php
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-?>
 <style>
     *{
         font-family: Estedad, sans-serif;
@@ -44,42 +41,16 @@
             <div style="min-height: 15vh;"></div>
             <div class="container">
                 <div class="card-group">
-                    <?php
-                    $id=$_GET['id'];
-                    $sql="select * from products where id=$id";
-                    $resault=mysqli_query($connect,$sql);
-                    if (mysqli_num_rows($resault) > 0){
-                        while($row=mysqli_fetch_assoc($resault)){
-                            echo '
-                            <div class="container">
-                            <div class="col-6">
-                                <div class="card">
-                                <br>
-                                <div class="card-header bg-danger text-light">
-                                <br>
-                                    <h2>'.$row['off'].'% تخفیف</h2>
-                                    <br>
-                                </div>
-                                <div class="card-body">
-                                <h1 class="card-title">'.$row['name'].'</h1>
-                                <br>
-                                <img class="card-img-top" src="'.$row['img'].'" alt="Product">
-                                <br>
-                                <br>
-                                <h5>'.$row['about'].'</h5>
-                                <br>
-                                </div>
-                                <div class="card-footer">
-                                <br>
-                                <h3 class="card-text text-success">'.$row['price'].' تومان</h3>
-                                <br>
-                                </div>
-                            </div>
-                            </div>
-                            ';
-                        }
-                    }
-                    ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <br>
+                            <h2 class="card-title text-danger">خطایی در بارگزاری فایل رخ داده است</h2>
+                            <br>
+                            <p class="card-text">
+                                <a href="/hamster/admin/category/index.php" class="btn btn-lg btn-warning">بازگشت</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="min-height: 250vh;"></div>

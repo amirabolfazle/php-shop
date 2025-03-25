@@ -44,6 +44,8 @@
             <div style="min-height: 15vh;"></div>
             <div class="container">
                 <div class="card-group">
+                    <div class="container">
+                        <div class="row">
                     <?php
                     $id=$_GET['id'];
                     $sql="select products.* from category_products,products where category_products.product_id = products.id and category_products.category_id = $id";
@@ -51,21 +53,25 @@
                     if (mysqli_num_rows($resault) > 0){
                         while($row=mysqli_fetch_assoc($resault)){
                             echo '
-                            <div class="card">
-                                <br>
-                                <img class="card-img-top" src="https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg" alt="Product">
-                                <div class="card-body">
-                                <h1 class="card-title">'.$row['name'].'</h1>
-                                    <p class="card-text"></p>
+                                <div class="col-6">
+                                    <div class="card">
+                                        <br>
+                                        <img class="card-img-top" src="'.$row['img'].'" alt="Product" style="max-height: 450px;min-height:450px">
+                                        <div class="card-body">
+                                            <h1 class="card-title">'.$row['name'].'</h1>
+                                            <p class="card-text"></p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a class="btn btn-warning" href="product.php?id='.$row['id'].'"><h5>مشاهده</h5></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <a class="btn btn-warning" href="product.php?id='.$row['id'].'"><h5>مشاهده</h5></a>
-                                </div>
-                            </div>
-                            ';
+                                ';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="min-height: 250vh;"></div>

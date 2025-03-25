@@ -76,6 +76,7 @@
                                             <th><h5>قیمت</h5></th>
                                             <th><h5>حذف محصول</h5></th>
                                             <th><h5>بروزرسانی محصول</h5></th>
+                                            <th><h5>دسته بندی ها</h5></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,6 +91,7 @@
                                                 <td><h5>'.$row['price'].' ريال</h5></td>
                                                 <td><h5><a class="text-danger link-underline-dark" href="remove.php?id='.$row['id'].'">حذف</a></h5></td>
                                                 <td><h5><a class="text-primary link-underline-dark" href="update.php?id='.$row['id'].'">بروزرسانی</a></h5></td>
+                                                <td><h5><a class="text-warning link-underline-dark" href="categories.php?id='.$row['id'].'">دسته بندی ها</a></h5></td>
                                             </tr>';
                                         };
                                     }else{

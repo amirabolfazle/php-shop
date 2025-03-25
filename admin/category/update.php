@@ -62,11 +62,15 @@
                             <p class="card-text">
                                 <div class="container">
                                 <div class="col-6">
-                                    <form action="update-action.php" method="post">
-                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>">i</input>
+                                    <form action="update-action.php" method="post" enctype="multipart/form-data">
+                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>">
+                                        <input type="text" name="img_url" style="display:none" value="<?php echo $img?>">
                                         <input type="text" name="name" class="form-control" value="<?php echo $name?>">
                                         <br>
-                                        <input type="text" name="img" class="form-control" value="<?php echo $img?>">
+                                        <label for="upload-img" class='form-label'>
+                                            <img src="<?php echo $img ?>" class="img-thumbnail" width='200' alt="تصویر قبلی" title="تصویر قبلی">
+                                        </label>
+                                        <input type="file" name="img" id='upload-img' class="form-control form-control-lg" accept="image/*">
                                         <br>
                                         <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
                                     </form>

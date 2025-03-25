@@ -1,19 +1,3 @@
-<?php
-    $id=$_GET['id'];
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    $sql="select * from products where id=$id";
-    $result=mysqli_query($connect,$sql);
-    if (mysqli_num_rows($result)>0){
-        while($rows=mysqli_fetch_assoc($result)){
-            $about=$rows['about'];
-            $name=$rows['name'];
-            $price=$rows['price'];
-            $off=$rows['off'];
-            $cat_id=$rows['category_id'];
-            $img=$rows['img'];
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +13,9 @@
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
 <?php
+    $id=$_GET['id'];
     $connect=mysqli_connect('localhost','root','','hamstershop');
+    $sql="Select * From category_products where product_id = $id";
 ?>
 <style>
     *{
@@ -37,6 +23,9 @@
     }
     .card{
         margin: 5px;
+    }
+    .cr-info{
+        cursor:help;
     }
 </style>
     <title>همستر فارسی</title>
@@ -62,28 +51,63 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">بروزرسانی محصول</h5>
-                            <p class="card-text">
-                                <div class="container">
-                                <div class="col-6">
-                                    <form action="update-action.php" method="post">
-                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>"></input>
-                                        <input type="text" name="name" class="form-control" value="<?php echo $name?>">
+                            <div class="container">
+                                <div class="col-4">
+                                    <br>
+                                    <form action="relation-action.php" method="post">
+                                        <div class="form-group">
+                                            <select name='cat_id' class='form-select'>
+                                        <?php 
+                                        $sql3="select * from categories";
+                                        $resault3=mysqli_query($connect,$sql3);
+                                        if (mysqli_num_rows($resault3)>0){
+                                            while($row3=mysqli_fetch_assoc($resault3)){
+                                                echo "
+                                                <option value='".$row3['id']."'>".$row3['name']."</option>
+                                                ";
+                                            };
+                                        }
+                                        ?>
+                                            </select>
                                         <br>
-                                        <textarea name="about" id="about" class="form-control" rows="3" placeholder="توضيحات محصول را وارد کنید"><?php echo $about?></textarea>
+                                        <input type="text" name='id' value='<?php echo $id;?>' style='display:none'>
                                         <br>
-                                        <input type="text" name="price" id="price" class="form-control" placeholder="قیمت محصول را وارد کنید" value="<?php echo $price?>"></input>
-                                        <br>
-                                        <input type="number" name="off" id="off" class="form-control" placeholder="درصد تخفیف محصول را وارد کنید" value="<?php echo $off?>"min="0" max="100"></input>
-                                        <br>
-                                        <label for="upload-img" class='form-label'>
-                                            <img src="<?php echo $img ?>" class="img-thumbnail" width='200' alt="تصویر قبلی" title="تصویر قبلی">
-                                        </label>
-                                        <input type="file" name="img" id='upload-img' class="form-control form-control-lg" accept="image/*">
-                                        <br>
-                                        <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
+                                        <input type="submit" class="card-title btn btn-lg btn-warning" value="افرودن دسته بندی جدید">
+                                        </div>
                                     </form>
                                 </div>
+                            </div>
+                            
+                            <p class="card-text">
+                                <table class="table table-dark table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th><h5>آیدی دسته بندی</h5></th>
+                                            <th><h5>نام دسته بندی</h5></th>
+                                            <th><h5>حذف دسته بندی</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                    $resault=mysqli_query($connect,$sql);
+                                    if (mysqli_num_rows($resault)>0){
+                                        while($row=mysqli_fetch_assoc($resault)){
+                                            $sql2="Select * From categories where id = ".$row['category_id'];
+                                            $resault2=mysqli_query($connect,$sql2);
+                                            while($row2=mysqli_fetch_assoc($resault2)){
+                                            echo '                                        
+                                            <tr>
+                                                <td><h5>'.$row2['id'].'</h5></td>
+                                                <td><h5>'.$row2['name'].'</h5></td>
+                                                <td><h5><a class="text-danger link-underline-dark" href="relation-remove.php?id='.$row['id'].'">حذف</a></h5></td>
+                                            </tr>';}
+                                        };
+                                    }else{
+                                        
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
                             </p>
                         </div>
                     </div>
