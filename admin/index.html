@@ -1,18 +1,3 @@
-<?php
-    $id=$_GET['id'];
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    $sql="select * from products where id=$id";
-    $result=mysqli_query($connect,$sql);
-    if (mysqli_num_rows($result)>0){
-        while($rows=mysqli_fetch_assoc($result)){
-            $about=$rows['about'];
-            $name=$rows['name'];
-            $price=$rows['price'];
-            $off=$rows['off'];
-            $cat_id=$rows['category_id'];
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +12,6 @@
   <link rel="preconnect" href="//fdn.fontcdn.ir">
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
-<?php
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-?>
 <style>
     *{
         font-family: Estedad, sans-serif;
@@ -61,38 +43,16 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">بروزرسانی محصول</h5>
+                            <h2 class="card-title">پنل مدیریت</h2>
                             <p class="card-text">
                                 <div class="container">
-                                <div class="col-6">
-                                    <form action="update-action.php" method="post">
-                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>"></input>
-                                        <input type="text" name="name" class="form-control" value="<?php echo $name?>">
-                                        <br>
-                                        <textarea name="about" id="about" class="form-control" rows="3" placeholder="توضيحات محصول را وارد کنید"><?php echo $about?></textarea>
-                                        <br>
-                                        <input type="text" name="price" id="price" class="form-control" placeholder="قیمت محصول را وارد کنید" value="<?php echo $price?>"></input>
-                                        <br>
-                                        <input type="number" name="off" id="off" class="form-control" placeholder="درصد تخفیف محصول را وارد کنید" value="<?php echo $off?>"min="0" max="100"></input>
-                                        <br>
-                                        <select class="form-select" name='category_id'>
-                                            <?php
-                                            $sql2="select * from categories";
-                                            $result2=mysqli_query($connect,$sql2);
-                                            if (mysqli_num_rows($result2)>0){
-                                                while($row=mysqli_fetch_assoc($result2)){
-                                                    echo "<option";
-                                                    if ($cat_id=$row['id']){
-                                                        echo ' selected ';
-                                                    }
-                                                    echo"value=".$row['id'].">".$row['name']."</option>";
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                        <br>
-                                        <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
-                                    </form>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="product" class="btn btn-lg btn-warning">مدیریت محصولات</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="category" class="btn btn-lg btn-warning">مدیریت دسته بندی</a>
+                                    </div>
                                 </div>
                             </p>
                         </div>
