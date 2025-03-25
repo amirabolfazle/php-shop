@@ -1,15 +1,3 @@
-<?php
-    $id=$_GET['id'];
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    $sql="select * from categories where id=$id";
-    $result=mysqli_query($connect,$sql);
-    if (mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result)){
-            $name=$row['name'];
-            $img=$row['img'];
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +13,9 @@
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
 <?php
+    $id=$_GET['id'];
     $connect=mysqli_connect('localhost','root','','hamstershop');
+    $sql="Select * From category_products where product_id = $id";
 ?>
 <style>
     *{
@@ -33,6 +23,9 @@
     }
     .card{
         margin: 5px;
+    }
+    .cr-info{
+        cursor:help;
     }
 </style>
     <title>همستر فارسی</title>
@@ -58,21 +51,63 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">بروزرسانی دسته بندی</h5>
-                            <p class="card-text">
-                                <div class="container">
-                                <div class="col-6">
-                                    <form action="update-action.php" method="post">
-                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>"></input>
-                                        <input type="text" name="name" class="form-control" value="<?php echo $name?>">
+                            <div class="container">
+                                <div class="col-4">
+                                    <br>
+                                    <form action="relation-action.php" method="post">
+                                        <div class="form-group">
+                                            <select name='cat_id' class='form-select'>
+                                        <?php 
+                                        $sql3="select * from categories";
+                                        $resault3=mysqli_query($connect,$sql3);
+                                        if (mysqli_num_rows($resault3)>0){
+                                            while($row3=mysqli_fetch_assoc($resault3)){
+                                                echo "
+                                                <option value='".$row3['id']."'>".$row3['name']."</option>
+                                                ";
+                                            };
+                                        }
+                                        ?>
+                                            </select>
                                         <br>
-                                        <input type="text" name="img" class="form-control" value="<?php echo $img?>">
+                                        <input type="text" name='id' value='<?php echo $id;?>' style='display:none'>
                                         <br>
-                                        <input type="text" name="img" class="form-control" value="<?php echo $img?>">
-                                        <br>
-                                        <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
+                                        <input type="submit" class="card-title btn btn-lg btn-warning" value="افرودن دسته بندی جدید">
+                                        </div>
                                     </form>
                                 </div>
+                            </div>
+                            
+                            <p class="card-text">
+                                <table class="table table-dark table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th><h5>آیدی دسته بندی</h5></th>
+                                            <th><h5>نام دسته بندی</h5></th>
+                                            <th><h5>حذف دسته بندی</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                    $resault=mysqli_query($connect,$sql);
+                                    if (mysqli_num_rows($resault)>0){
+                                        while($row=mysqli_fetch_assoc($resault)){
+                                            $sql2="Select * From categories where id = ".$row['category_id'];
+                                            $resault2=mysqli_query($connect,$sql2);
+                                            while($row2=mysqli_fetch_assoc($resault2)){
+                                            echo '                                        
+                                            <tr>
+                                                <td><h5>'.$row2['id'].'</h5></td>
+                                                <td><h5>'.$row2['name'].'</h5></td>
+                                                <td><h5><a class="text-danger link-underline-dark" href="relation-remove.php?id='.$row['id'].'">حذف</a></h5></td>
+                                            </tr>';}
+                                        };
+                                    }else{
+                                        
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
                             </p>
                         </div>
                     </div>
