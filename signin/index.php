@@ -12,9 +12,31 @@
   <link rel="preconnect" href="//fdn.fontcdn.ir">
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
+<style>
+    <?php
+        if (isset($_COOKIE['day'])){
+            if ($_COOKIE['day']==0){
+                echo '.card,.foot{
+                    background-color: #212529;
+                } .mini-body{background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;}';
+            }else{
+                echo '.card,.foot{
+                    background-color: #f8f9fa;
+                } .mini-body{background-image:url(https://wallpapercave.com/wp/wp9081316.jpg);background-repeat: no-repeat;background-size: cover;}';
+            }
+        }else{
+            echo '.card,.foot{
+                background-color: #212529;
+            }.mini-body{background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;}';
+        }
+    ?>
+</style>
+  <link rel="preconnect" href="//fdn.fontcdn.ir">
+<link rel="preconnect" href="//v1.fontapi.ir">
+<link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
 <?php
     session_start();
-    $connect=mysqli_connect('localhost','root','','hamstershop');
+    include 'connect.php';
     if (isset($_SESSION['id'])){
         $er=0;
         $sql6='select * from users where id='.$_SESSION['id'];
@@ -30,21 +52,21 @@
     *{
         font-family: Estedad, sans-serif;
     }
-    .card{
-        margin: 5px;
-    }
 </style>
     <title>همستر فارسی</title>
 </head>
 <body dir="rtl">
     <center>
-    <?php
+        <?php
             if (isset($_COOKIE['day'])){
                 if ($_COOKIE['day']==0){
                     echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">';
                 }else{
                     echo '<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">';
                 }
+            }
+            else{
+                echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">';
             }
         ?>
             <img class="navbar-brand img-circle" src="https://s100.divarcdn.com/static/photo/afra/post/QpfdclBGzM4kRWC91k7-xA/59e5904e-d6bd-4235-9415-b2e77eccbba0.jpg" alt="">
@@ -57,7 +79,7 @@
                         <a class="nav-link text-warning" href="#" tabindex="-1" aria-disabled="false"><h2>محصولات</h2></a>
                     </li>
                     <li class="nav-item active p-3" style="cursor: pointer;">
-                        <a href="../switch">
+                        <a href="switch">
                             <?php
                                 if (isset($_COOKIE['day'])){
                                     if ($_COOKIE['day']==0){
@@ -65,6 +87,8 @@
                                     }else{
                                         echo '<img id="night" width="100" src="http://sagpaz.is-great.net/img/night.png" style="cursor: pointer;" alt="dark">';
                                     }
+                                }else{
+                                    echo '<img id="night" width="100" src="http://sagpaz.is-great.net/img/night.png" style="cursor: pointer;" alt="dark">';
                                 }
                             ?>
                         </a>

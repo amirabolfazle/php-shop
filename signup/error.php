@@ -125,11 +125,11 @@
                                 متاسفیم!
                             </h1>
                             <h4 class="text-danger">
-                                کاربری با این مشخصات یافت نشد
+                                مشکلی پیش آمده است
                             </h4>
                         </b>
                         <br>
-                        <a href="/hamster/signin" class="btn btn-lg btn-warning">بازگشت</a>
+                        <a href="index.php" class="btn btn-lg btn-warning">بازگشت</a>
                         <br>
                         <br>
                     </div>
