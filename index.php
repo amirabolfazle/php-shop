@@ -22,7 +22,9 @@
                 } .mini-body{background-image:url(https://wallpapercave.com/wp/wp9081316.jpg);background-repeat: no-repeat;background-size: cover;}';
             }
         }else{
-            echo '.mini-body{background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;}';
+            echo '.card,.foot{
+                background-color: #212529;
+            }.mini-body{background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;}';
         }
     ?>
 </style>
@@ -60,6 +62,9 @@
                     echo '<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">';
                 }
             }
+            else{
+                echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">';
+            }
         ?>
             <img class="navbar-brand img-circle" src="https://s100.divarcdn.com/static/photo/afra/post/QpfdclBGzM4kRWC91k7-xA/59e5904e-d6bd-4235-9415-b2e77eccbba0.jpg" alt="">
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,6 +84,8 @@
                                     }else{
                                         echo '<img id="night" width="100" src="http://sagpaz.is-great.net/img/night.png" style="cursor: pointer;" alt="dark">';
                                     }
+                                }else{
+                                    echo '<img id="night" width="100" src="http://sagpaz.is-great.net/img/night.png" style="cursor: pointer;" alt="dark">';
                                 }
                             ?>
                         </a>
