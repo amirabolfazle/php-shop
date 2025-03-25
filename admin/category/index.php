@@ -1,15 +1,3 @@
-<?php
-    $id=$_GET['id'];
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    $sql="select * from categories where id=$id";
-    $result=mysqli_query($connect,$sql);
-    if (mysqli_num_rows($result)>0){
-        while($row=mysqli_fetch_assoc($result)){
-            $name=$row['name'];
-            $img=$row['img'];
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +14,7 @@
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
 <?php
     $connect=mysqli_connect('localhost','root','','hamstershop');
+    $sql='Select * From categories';
 ?>
 <style>
     *{
@@ -58,19 +47,46 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">بروزرسانی دسته بندی</h5>
-                            <p class="card-text">
-                                <div class="container">
-                                <div class="col-6">
-                                    <form action="cat-admin-update-action.php" method="post">
-                                        <input type="text" name="id" style="display:none" value="<?php echo $id?>">i</input>
-                                        <input type="text" name="name" class="form-control" value="<?php echo $name?>">
+                            <div class="container">
+                                <div class="col-4">
+                                    <br>
+                                    <form action="action.php" method="post">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="نام دسته بندی را وارد کنید">
                                         <br>
-                                        <input type="text" name="img" class="form-control" value="<?php echo $img?>">
-                                        <br>
-                                        <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
+                                        <input type="submit" class="card-title btn btn-lg btn-warning" value="افرودن دسته بندی جدید">
                                     </form>
                                 </div>
+                            </div>
+                            
+                            <p class="card-text">
+                                <table class="table table-dark table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th><h5>آیدی</h5></th>
+                                            <th><h5>نام</h5></th>
+                                            <th><h5>حذف دسته بندی</h5></th>
+                                            <th><h5>بروزرسانی دسته بندی</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                    $resault=mysqli_query($connect,$sql);
+                                    if (mysqli_num_rows($resault)>0){
+                                        while($row=mysqli_fetch_assoc($resault)){
+                                            echo '                                        
+                                            <tr>
+                                                <td><h5>'.$row['id'].'</h5></td>
+                                                <td><h5>'.$row['name'].'</h5></td>
+                                                <td><h5><a class="text-danger link-underline-dark" href="remove.php?id='.$row['id'].'">حذف</a></h5></td>
+                                                <td><h5><a class="text-primary link-underline-dark" href="update.php?id='.$row['id'].'">بروزرسانی</a></h5></td>
+                                            </tr>';
+                                        };
+                                    }else{
+                                        
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
                             </p>
                         </div>
                     </div>
