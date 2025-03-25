@@ -12,26 +12,15 @@
   <link rel="preconnect" href="//fdn.fontcdn.ir">
 <link rel="preconnect" href="//v1.fontapi.ir">
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
-<?php
-    session_start();
-    $connect=mysqli_connect('localhost','root','','hamstershop');
-    if (isset($_SESSION['id'])){
-        $er=0;
-        $sql6='select * from users where id='.$_SESSION['id'];
-        $res6=mysqli_query($connect,$sql6);
-        while($row6=mysqli_fetch_assoc($res6)){
-            $name=$row6['name'];
-        }
-    }else{
-        $er=1;
-    }
-?>
 <style>
     *{
         font-family: Estedad, sans-serif;
     }
     .card{
         margin: 5px;
+    }
+    .corner{
+        border-radius: 20px;
     }
 </style>
     <title>همستر فارسی</title>
@@ -83,28 +72,45 @@
         <div id="mini-body" style="background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;">
             <div style="min-height: 15vh;"></div>
             <div class="container">
-                    <div class="col-6">
-                        <form action="action.php" method="post">
-                            <input type="text" name="uname" class="form-control" placeholder="نام کاربری خود را وارد کنید">
-                            <br>
-                            <input type="password" name="password" class="form-control" placeholder="رمز عبور خود را وارد کنید">
-                            <br>
-                            <input type="submit" class="btn btn-lg btn-warning" value="ورود">
-                            <br>
-                            <br>
-                            <div class="p-3">
-                                <h6>
-                                    <a href="/hamster/signup" class='text-warning link-underline-dark'>حساب کاربری ندارید؟ ثبت نام کنید</a>
-                                </h6>
-                            </div>
-                        </form>
+                    <div class="col-6 bg-dark corner">
+                        <br>
+                        <b>
+                            <h1 class="text-danger">
+                                متاسفیم!
+                            </h1>
+                            <h4 class="text-danger">
+                                این نام کاربری قبلا استفاده شده است
+                            </h4>
+                        </b>
+                        <br>
+                        <a href="/hamster/signin" class="btn btn-lg btn-warning">ورود</a>
+                        <br>
+                        <br>
                     </div>
             </div>
             <div style="min-height: 250vh;"></div>
         </div>
     </center>
 </body>
-<?php
-    include '../footer.php';
-    ?>
+<footer class="bg-dark text-light">
+    <center>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h2>
+                        سایت همستر فارسی
+                    </h2>
+                </div>
+                <div class="col-4">
+                    <img class="img-circle" src="https://s100.divarcdn.com/static/photo/afra/post/QpfdclBGzM4kRWC91k7-xA/59e5904e-d6bd-4235-9415-b2e77eccbba0.jpg" alt="Hamster Kombat" width="200">
+                </div>
+                <div class="col-4">
+                    <h2>اول سایت تخصصی خرید و فروش HMSTR در ایران</h2>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </center>
+</footer>
 </html>

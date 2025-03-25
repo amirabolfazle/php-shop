@@ -38,7 +38,15 @@
 </head>
 <body dir="rtl">
     <center>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <?php
+            if (isset($_COOKIE['day'])){
+                if ($_COOKIE['day']==0){
+                    echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">';
+                }else{
+                    echo '<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">';
+                }
+            }
+        ?>
             <img class="navbar-brand img-circle" src="https://s100.divarcdn.com/static/photo/afra/post/QpfdclBGzM4kRWC91k7-xA/59e5904e-d6bd-4235-9415-b2e77eccbba0.jpg" alt="">
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -48,13 +56,27 @@
                     <li class="nav-item">
                         <a class="nav-link text-warning" href="#" tabindex="-1" aria-disabled="false"><h2>محصولات</h2></a>
                     </li>
+                    <li class="nav-item active p-3" style="cursor: pointer;">
+                        <a href="../switch">
+                            <?php
+                                if (isset($_COOKIE['day'])){
+                                    if ($_COOKIE['day']==0){
+                                        echo '<img id="day" width="100" src="http://sagpaz.is-great.net/img/day.png" style="cursor: pointer;" alt="light">';
+                                    }else{
+                                        echo '<img id="night" width="100" src="http://sagpaz.is-great.net/img/night.png" style="cursor: pointer;" alt="dark">';
+                                    }
+                                }
+                            ?>
+                        </a>
+                        
+                    </li>
                 </ul>
             </div>
             <?php
                 if (isset($_SESSION['id'])){
                     echo "<div class='p-3 navbar-brand text-warning'>خوش آمدید <span class='text-light'>$name</span></div><div class='p-3'><a href='logout' class='btn btn-lg btn-danger'>خروج</a></div>";
                 }else{
-                    echo "<div class='p-3 navbar-brand text-warning'><a href='/hamster/signin' class='btn btn-lg btn-warning'>وارد شوید</a></div>";
+                    echo "<div class='p-3 navbar-brand text-warning'><a href='signin' class='btn btn-lg btn-warning'>وارد شوید</a></div>";
                 }
             ?>
         </nav>
