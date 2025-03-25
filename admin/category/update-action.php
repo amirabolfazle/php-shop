@@ -5,5 +5,5 @@
     $connect=mysqli_connect('localhost','root','','hamstershop');
     $sql="UPDATE `categories` SET `name` = '$name', `img` = '$img' WHERE `categories`.`id` = $id;";
     $result=mysqli_query($connect,$sql);
-    header("Location: cat-admin.php")
+    header("Location: index.php")
 ?>
