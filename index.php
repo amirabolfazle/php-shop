@@ -52,7 +52,7 @@
                             echo '
                             <div class="card col-3">
                                 <br>
-                                <img class="card-img-top" src="'.$row['img'].'" alt="Product">
+                                <img class="card-img-top" src="'.$row['img'].'" alt="Product" style="max-height: 350px;min-height:350px">
                                 <div class="card-body">
                                 <h1 class="card-title">'.$row['name'].'</h1>
                                     <p class="card-text"></p>

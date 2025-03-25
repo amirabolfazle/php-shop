@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2024 at 04:15 PM
+-- Generation Time: Jun 30, 2024 at 04:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,16 +31,17 @@ USE `hamstershop`;
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `img` text NOT NULL DEFAULT 'https://hamsterkombat.io/images/hamsters/1.avif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Lord'),
-(2, 'Master');
+INSERT INTO `categories` (`id`, `name`, `img`) VALUES
+(1, 'Lord', 'http://localhost/hamster/admin/cdn/categories/1'),
+(2, 'Master', 'http://localhost/hamster/admin/cdn/categories/2');
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,9 @@ CREATE TABLE `category_products` (
 --
 
 INSERT INTO `category_products` (`id`, `category_id`, `product_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(3, 2, 1),
+(5, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -72,17 +75,18 @@ CREATE TABLE `products` (
   `name` varchar(50) NOT NULL,
   `about` text NOT NULL,
   `price` int(11) NOT NULL,
-  `off` tinyint(4) NOT NULL DEFAULT 0
+  `off` tinyint(4) NOT NULL DEFAULT 0,
+  `img` text NOT NULL DEFAULT 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `about`, `price`, `off`) VALUES
-(1, 'اکانت وریفای شده', 'دارای پرفیت و کوین بالا', 2000000, 2),
-(7, '2', '2', 2, 0),
-(8, '2', '2', 2, 0);
+INSERT INTO `products` (`id`, `name`, `about`, `price`, `off`, `img`) VALUES
+(1, 'اکانت وریفای شده', 'دارای پرفیت و کوین بالا', 2000000, 2, 'http://localhost/hamster/admin/cdn/categories/1'),
+(7, '2', '2', 2, 0, 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg'),
+(8, '2', '2', 2, 0, 'https://myket.ir/mag/wp-content/uploads/2024/06/What-Is-Hamster-Kombat-00.jpg');
 
 --
 -- Indexes for dumped tables
@@ -120,13 +124,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `category_products`
 --
 ALTER TABLE `category_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,6 +10,7 @@
             $price=$rows['price'];
             $off=$rows['off'];
             $cat_id=$rows['category_id'];
+            $img=$rows['img'];
         }
     }
 ?>
@@ -75,21 +76,10 @@
                                         <br>
                                         <input type="number" name="off" id="off" class="form-control" placeholder="درصد تخفیف محصول را وارد کنید" value="<?php echo $off?>"min="0" max="100"></input>
                                         <br>
-                                        <select class="form-select" name='category_id'>
-                                            <?php
-                                            $sql2="select * from categories";
-                                            $result2=mysqli_query($connect,$sql2);
-                                            if (mysqli_num_rows($result2)>0){
-                                                while($row=mysqli_fetch_assoc($result2)){
-                                                    echo "<option";
-                                                    if ($cat_id=$row['id']){
-                                                        echo ' selected ';
-                                                    }
-                                                    echo"value=".$row['id'].">".$row['name']."</option>";
-                                                }
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="upload-img" class='form-label'>
+                                            <img src="<?php echo $img ?>" class="img-thumbnail" width='200' alt="تصویر قبلی" title="تصویر قبلی">
+                                        </label>
+                                        <input type="file" name="img" id='upload-img' class="form-control form-control-lg" accept="image/*">
                                         <br>
                                         <input type="submit" class="btn btn-lg btn-warning" value="بروزرسانی">
                                     </form>
