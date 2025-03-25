@@ -14,6 +14,7 @@
 <link href="https://v1.fontapi.ir/css/Estedad" rel="stylesheet">
 <?php
     $connect=mysqli_connect('localhost','root','','hamstershop');
+    $sql='Select * From categories';
 ?>
 <style>
     *{
@@ -43,28 +44,52 @@
         <div id="mini-body" style="background-image:url(https://motionbgs.com/i/c/364x205/media/3335/topographic-textures.jpg);background-repeat: no-repeat;background-size: cover;">
             <div style="min-height: 15vh;"></div>
             <div class="container">
-                <div class="row">
-                    <?php
-                    $sql='select * from categories';
-                    $resault=mysqli_query($connect,$sql);
-                    if (mysqli_num_rows($resault) > 0){
-                        while($row=mysqli_fetch_assoc($resault)){
-                            echo '
-                            <div class="card col-3">
-                                <br>
-                                <img class="card-img-top" src="'.$row['img'].'" alt="Product">
-                                <div class="card-body">
-                                <h1 class="card-title">'.$row['name'].'</h1>
-                                    <p class="card-text"></p>
-                                </div>
-                                <div class="card-footer">
-                                    <a class="btn btn-warning" href="products.php?id='.$row['id'].'"><h5>مشاهده</h5></a>
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="col-4">
+                                    <br>
+                                    <form action="cat-admin-action.php" method="post">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="نام دسته بندی را وارد کنید">
+                                        <br>
+                                        <input type="submit" class="card-title btn btn-lg btn-warning" value="افرودن دسته بندی جدید">
+                                    </form>
                                 </div>
                             </div>
-                            ';
-                        }
-                    }
-                    ?>
+                            
+                            <p class="card-text">
+                                <table class="table table-dark table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th><h5>آیدی</h5></th>
+                                            <th><h5>نام</h5></th>
+                                            <th><h5>حذف دسته بندی</h5></th>
+                                            <th><h5>بروزرسانی دسته بندی</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                    $resault=mysqli_query($connect,$sql);
+                                    if (mysqli_num_rows($resault)>0){
+                                        while($row=mysqli_fetch_assoc($resault)){
+                                            echo '                                        
+                                            <tr>
+                                                <td><h5>'.$row['id'].'</h5></td>
+                                                <td><h5>'.$row['name'].'</h5></td>
+                                                <td><h5><a class="text-danger link-underline-dark" href="cat-admin-remove.php?id='.$row['id'].'">حذف</a></h5></td>
+                                                <td><h5><a class="text-primary link-underline-dark" href="cat-admin-update.php?id='.$row['id'].'">بروزرسانی</a></h5></td>
+                                            </tr>';
+                                        };
+                                    }else{
+                                        
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="min-height: 250vh;"></div>
